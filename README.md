@@ -1,6 +1,6 @@
 # 🐞 JavaFX Bug Tracking System
 
-![Java Logo](https://img.icons8.com/color/100/000000/java-coffee-cup-logo.png) ![Helwan Uni Logo](https://www.helwan.edu.eg/images/logo-white-deskt-min.png)
+<img width="180" height="100" alt="image" src="https://github.com/user-attachments/assets/ca6ed4c5-a06c-4f4f-9107-78a9b172c436" /> ![Java Logo](https://img.icons8.com/color/100/000000/java-coffee-cup-logo.png)
 
 **Faculty of Computing and Artificial Intelligence**  
 **Helwan University**  
