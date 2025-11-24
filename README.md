@@ -1,10 +1,10 @@
 # 🐞 JavaFX Bug Tracking System
 
-![Java Logo](https://img.icons8.com/color/100/000000/java-coffee-cup-logo.png)
+![Java Logo](https://img.icons8.com/color/100/000000/java-coffee-cup-logo.png) ![Helwan Uni Logo](https://www.helwan.edu.eg/images/logo-white-deskt-min.png)
 
 **Faculty of Computing and Artificial Intelligence**  
 **Helwan University**  
-**Course:** Programming Languages 2 (CS-213)  
+**Course:** Programming Languages 2 **(CS-213)**  
 **Instructor:** Dr. Mohammed El-Said  
 
 **🐞 Bug Tracking System Desktop Application using JavaFX with Text file to act as DataBase**
