@@ -76,6 +76,8 @@ Detailed project requirements: [Bug Tracking System.pdf](Requirements/Bug%20Trac
 | Name                  | Role                  | GitHub Profile                              |
 |-----------------------|-----------------------|---------------------------------------------|
 | Abdelhalim Yasser     |                       | [@abdelhalimyasser](https://github.com/abdelhalimyasser) |
+|Abdelrahman Ahmed      |                       |[@eng-boda](https://github.com/eng-boda) |
+
 
 
 > Feel free to fork and contribute! Pull requests are welcome.
