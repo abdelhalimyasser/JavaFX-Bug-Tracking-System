@@ -79,9 +79,9 @@ Detailed project requirements: [Bug Tracking System.pdf](Requirements/Bug%20Trac
 | Abdelrahman Ahmed     |                       | [@eng-boda](https://github.com/eng-boda) |
 | Nour Mohamed          |                       | [@Nour-FCAI](https://github.com/Nour-FCAI) |
 | Youssef Saeed         |                       | [@Youssef-Saeed14](https://github.com/Youssef-Saeed14) |
-| Ali Samy              |                       | [@]() |
-| Nada Moustafa         |                       | [@]() |
-| Abdelrahman Alaa      |                       | [@]() |
+| Ali Samy              |                       | [@AliSamy12](https://github.com/AliSamy12) |
+| Nada Moustafa         |                       | [@qNVDV](https://github.com/qNVDV) |
+| Abdelrahman Alaa      |                       | [@abdelrahmanalaa-3094](https://github.com/abdelrahmanalaa-3094) |
 
 
 
