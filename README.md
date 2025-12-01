@@ -70,7 +70,7 @@ A full-featured bug tracking application that supports **four user roles** (Test
 | **3. Full Project Manager Module**          | ############ | • Complete PM dashboard logic<br>• Performance reports (bugs per person, avg fix time, charts)<br>• Open vs Closed statistics |
 | **4. Full Admin Module** | ############     | • Admin CRUD for users<br>• View all bugs<br>• Prevent duplicate usernames/emails<br>• Safe user file operations |
 | **5. Authentication + Session Manager**     | ############ | • Login/Register validation<br>• Session management & role-based access<br>• Logout & simple password hashing |
-| **6. CSV Master Controller** | ############ | • Central reusable CSV utility class (read/write/update/delete/append)<br>• Auto-increment BugID<br>• Thread-safe operations<br>• Creates `screenshots/` folder |
+| **6. CSV Master Controller** | ############ | • Central reusable CSV utility class (read/write/update/delete/append)<br>• Auto-increment BugIDs<br>• Creates `screenshots/` folder |
 | **7. Email System + Notification Manager**  | ############ | • Realistic simulated emails (formatted output)<br>• Templates for assignment & completion<br>• Date/time utilities<br>• Helps with CSV edge cases |
 
 ### CSV File Structures
