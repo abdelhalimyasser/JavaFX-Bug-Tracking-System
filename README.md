@@ -55,7 +55,7 @@ A full-featured bug tracking application that supports **four user roles** (Test
 ### 📄 Documentation
 - [Project Requirements (PDF)](Requirements/Bug%20Tracking%20System.pdf)
 
-- [UML Class Diagrams](Class-Diagrams)
+- [UML Class Diagrams](Class%20Diagrams)
 
 ---
 
