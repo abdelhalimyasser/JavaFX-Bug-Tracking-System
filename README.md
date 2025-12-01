@@ -1,92 +1,103 @@
 # 🐞 JavaFX Bug Tracking System
 
-<img width="180" height="100" alt="image" src="https://github.com/user-attachments/assets/ca6ed4c5-a06c-4f4f-9107-78a9b172c436" /> ![Java Logo](https://img.icons8.com/color/100/000000/java-coffee-cup-logo.png)
+<img src="https://github.com/user-attachments/assets/ca6ed4c5-a06c-4f4f-9107-78a9b172c436" alt="Bug Tracking System Logo" width="180" align="right" />
 
 **Faculty of Computing and Artificial Intelligence**  
-**Helwan University**  
-**Course:** Programming Languages 2 **(CS-213)**  
-**Instructor:** Dr. Mohammed El-Said  
+**Helwan University**
 
-**🐞 Bug Tracking System Desktop Application using JavaFX with Text file to act as DataBase**
+**Course:** Programming Languages 2 (CS-213)  
+**Instructor:** Dr. Mohammed El-Said  
+**Academic Year:** 2025/2026
+
+> A powerful desktop **Bug Tracking System** built with **JavaFX**, featuring role-based access control, automated email notifications, and persistent storage using text files (CSV).
 
 ---
 
 ### Project Overview
-A complete **Bug Tracking System** designed to streamline the bug reporting and resolution process in software development teams. The system supports four different user roles with distinct permissions and automated email notifications.
+A full-featured bug tracking application that supports **four user roles** (Tester, Developer, Project Manager, Admin) with tailored permissions and automated notifications.
 
 ---
 
-### Modules & Features
+### ✨ Key Features by Role
 
-#### 1. Tester Module
-- Create new bugs with the following details:
-  - Bug Name
-  - Bug Type
-  - Priority (Low/Medium/High/Critical)
-  - Bug Level
-  - Project Name
-  - Bug Date
-  - Status (Open/In Progress/Fixed/Closed)
-- Assign bugs to specific developers
-- Attach screenshots or files to bug reports
-- Monitor all open and closed bugs
-- **Automatic email notification** sent to the assigned developer with full bug details
+**Tester**  
+- Create & assign bugs with attachments  
+- View own reported bugs  
+- Auto email developer on assignment  
 
-#### 2. Developer Module
-- View list of bugs assigned to them
-- Update bug status (e.g., In Progress → Fixed)
-- Add comments or resolution notes
-- **Automatic email notification** sent to the tester when status is changed to "Fixed" or "Closed"
+**Developer**  
+- View assigned bugs  
+- Update status + add notes  
+- Auto email tester when fixed  
 
-#### 3. Project Manager Module
-- Dashboard to monitor overall project health
-- View performance metrics of developers and testers
-  - Number of bugs reported/resolved
-  - Average resolution time
-  - Open vs Closed bugs ratio
-- Track all open and closed bugs across projects
+**Project Manager**  
+- Performance dashboards & analytics  
+- Track team metrics and resolution times  
 
-#### 4. Admin Module
-- Full system oversight
-- View all bugs in the system
-- User management:
-  - Add new users
-  - Update user information and roles
-  - Delete or deactivate users
-- Role-based access control (Tester, Developer, PM, Admin)
+**Admin**  
+- Full user management (CRUD)  
+- View all bugs across the system  
 
 ---
 
-### Technologies Used
-- **JavaFX** – Rich desktop UI
-- **Scene Builder** – GUI design
-- **Text Files** – To act Like Database storage
-- **JavaMail API** – Automated email notifications
-- **MVC Architecture** – Clean code separation
+### 🛠️ Technologies Used
+
+| Technology        | Purpose                              |
+|-------------------|--------------------------------------|
+| JavaFX            | Rich desktop interface               |
+| Scene Builder     | GUI design                           |
+| CSV Text Files    | Lightweight database                 |
+| JavaMail API      | Simulated email notifications        |
+| MVC Architecture  | Clean code organization              |
 
 ---
 
-### Documentation
-Detailed project requirements: [Bug Tracking System.pdf](Requirements/Bug%20Tracking%20System.pdf)
+### 📄 Documentation
+- [Project Requirements (PDF)](Requirements/Bug%20Tracking%20System.pdf)
+
+- [UML Class Diagrams](Class-Diagrams)
 
 ---
 
-### Contributors ✨
+### Internal Team Roles & Responsibilities (7 Members)
 
-| Name                  | Role                  | GitHub Profile                              |
-|-----------------------|-----------------------|---------------------------------------------|
-| Abdelhalim Yasser     |                       | [@abdelhalimyasser](https://github.com/abdelhalimyasser) |
-| Abdelrahman Ahmed     |                       | [@eng-boda](https://github.com/eng-boda) |
-| Nourhan Mohamed       |                       | [@Nour-FCAI](https://github.com/Nour-FCAI) |
-| Youssef Saeed         |                       | [@Youssef-Saeed14](https://github.com/Youssef-Saeed14) |
-| Ali Samy              |                       | [@AliSamy12](https://github.com/AliSamy12) |
-| Nada Moustafa         |                       | [@qNVDV](https://github.com/qNVDV) |
-| Abdelrahman Alaa      |                       | [@abdelrahmanalaa-3094](https://github.com/abdelrahmanalaa-3094) |
+**Goal:** Everyone learns GUI + real logic. Only **2 people** touch the GUI (for unified design), but they also own heavy backend modules.
 
+| Role                                        | Owner         | Responsibilities |
+|---------------------------------------------|---------------|----------|
+| **1. GUI Master + Full Tester Module**      | ############# | • All GUI screens (Login, Register, Tester UI, Navigation)<br>• Unified styling & structure<br>• Full Tester logic (create bug, assign, attach screenshot, view bugs)<br>• Defines `users.csv` structure<br>• Calls email on assignment |
+| **2. GUI Master + Full Developer Module**   | ############ | • Remaining GUI (Bug forms, tables, Developer/PM/Admin dashboards)<br>• Screenshot dialog & final polish<br>• Full Developer logic (view assigned bugs, update status, auto-date)<br>• Defines `bugs.csv` structure<br>• Calls email on completion |
+| **3. Full Project Manager Module**          | ############ | • Complete PM dashboard logic<br>• Performance reports (bugs per person, avg fix time, charts)<br>• Open vs Closed statistics |
+| **4. Full Admin Module** | ############     | • Admin CRUD for users<br>• View all bugs<br>• Prevent duplicate usernames/emails<br>• Safe user file operations |
+| **5. Authentication + Session Manager**     | ############ | • Login/Register validation<br>• Session management & role-based access<br>• Logout & simple password hashing |
+| **6. CSV Master Controller** | ############ | • Central reusable CSV utility class (read/write/update/delete/append)<br>• Auto-increment BugID<br>• Thread-safe operations<br>• Creates `screenshots/` folder |
+| **7. Email System + Notification Manager**  | ############ | • Realistic simulated emails (formatted output)<br>• Templates for assignment & completion<br>• Date/time utilities<br>• Helps with CSV edge cases |
 
+### CSV File Structures
+- `users.csv` → `username,password,fullName,email,role`
+- `bugs.csv` → `bugId,title,type,priority,level,projectName,dateReported,status,testerUsername,developerUsername,screenshotPath,dateClosed`
 
-> Feel free to fork and contribute! Pull requests are welcome.
+**This division is perfectly fair** — everyone writes significant logic, deals with file I/O, and contributes to a complete working system.
 
 ---
 
-**FCAI Helwan University – 2025/2026**
+### 👥 Team Members
+
+| Name                  | GitHub                                                           |
+|-----------------------|------------------------------------------------------------------|
+| Abdelhalim Yasser     | [@abdelhalimyasser](https://github.com/abdelhalimyasser)         |
+| Abdelrahman Ahmed     | [@eng-boda](https://github.com/eng-boda)                         |
+| Abdelrahman Alaa      | [@abdelrahmanalaa-3094](https://github.com/abdelrahmanalaa-3094) |
+| Ali Samy              | [@AliSamy12](https://github.com/AliSamy12)                       |
+| Nada Moustafa         | [@qNVDV](https://github.com/qNVDV)                               |
+| Nourhan Mohamed       | [@Nour-FCAI](https://github.com/Nour-FCAI)                       |
+| Youssef Saeed         | [@Youssef-Saeed14](https://github.com/Youssef-Saeed14)           |
+
+> Contributions are welcome! Feel free to fork and submit pull requests
+
+---
+
+<p align="center">
+  <strong>FCAI – Helwan University</strong><br>
+  Programming Languages 2 • Final Project • 2025/2026
+</p>
