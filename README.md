@@ -63,15 +63,15 @@ A full-featured bug tracking application that supports **four user roles** (Test
 
 **Goal:** Everyone learns GUI + real logic. Only **2 people** touch the GUI (for unified design), but they also own heavy backend modules.
 
-| Role                                        | Owner         | Responsibilities |
-|---------------------------------------------|---------------|----------|
-| **1. GUI Master + Full Tester Module**      | ############# | • All GUI screens (Login, Register, Tester UI, Navigation)<br>• Unified styling & structure<br>• Full Tester logic (create bug, assign, attach screenshot, view bugs)<br>• Defines `users.csv` structure<br>• Calls email on assignment |
-| **2. GUI Master + Full Developer Module**   | ############ | • Remaining GUI (Bug forms, tables, Developer/PM/Admin dashboards)<br>• Screenshot dialog & final polish<br>• Full Developer logic (view assigned bugs, update status, auto-date)<br>• Defines `bugs.csv` structure<br>• Calls email on completion |
-| **3. Full Project Manager Module**          | ############ | • Complete PM dashboard logic<br>• Performance reports (bugs per person, avg fix time, charts)<br>• Open vs Closed statistics |
-| **4. Full Admin Module** | ############     | • Admin CRUD for users<br>• View all bugs<br>• Prevent duplicate usernames/emails<br>• Safe user file operations |
-| **5. Authentication + Session Manager**     | ############ | • Login/Register validation<br>• Session management & role-based access<br>• Logout & simple password hashing |
-| **6. CSV Master Controller** | ############ | • Central reusable CSV utility class (read/write/update/delete/append)<br>• Auto-increment BugIDs<br>• Creates `screenshots/` folder |
-| **7. Email System + Notification Manager**  | ############ | • Realistic simulated emails (formatted output)<br>• Templates for assignment & completion<br>• Date/time utilities<br>• Helps with CSV edge cases |
+| Role                                        | Owner                                 | Responsibilities |
+|---------------------------------------------|---------------------------------------|----------|
+| **1. GUI Master + Full Tester Module**      | • Abdelhalim Yasser<br> • Ali Samy    | • All GUI screens (Login, Register, Tester UI, Navigation)<br>• Unified styling & structure<br>• Full Tester logic (create bug, assign, attach screenshot, view bugs)<br>• Defines `users.csv` structure<br>• Calls email on assignment |
+| **2. GUI Master + Full Developer Module**   | • Abdelhalim Yasser<br> • Ali Samy    | • Remaining GUI (Bug forms, tables, Developer/PM/Admin dashboards)<br>• Screenshot dialog & final polish<br>• Full Developer logic (view assigned bugs, update status, auto-date)<br>• Defines `bugs.csv` structure<br>• Calls email on completion |
+| **3. Full Project Manager Module**          | • Norhan Mohamed<br> • Youssef Saeed  | • Complete PM dashboard logic<br>• Performance reports (bugs per person, avg fix time, charts)<br>• Open vs Closed statistics |
+| **4. Full Admin Module** | • Norhan Mohamed<br> • Youssef Saeed                     | • Admin CRUD for users<br>• View all bugs<br>• Prevent duplicate usernames/emails<br>• Safe user file operations |
+| **5. Authentication + Session Manager**     | • Abdelrahman Ahmed                   | • Login/Register validation<br>• Session management & role-based access<br>• Logout & simple password hashing |
+| **6. CSV Master Controller** | • Abderahman Alaa<br> • Nada Moustafa                | • Central reusable CSV utility class (read/write/update/delete/append)<br>• Auto-increment BugIDs<br>• Creates `screenshots/` folder |
+| **7. Email System + Notification Manager**  | • Abderahman Alaa<br> • Nada Moustafa | • Realistic simulated emails (formatted output)<br>• Templates for assignment & completion<br>• Date/time utilities<br>• Helps with CSV edge cases |
 
 ### CSV File Structures
 - `users.csv` → `username,password,fullName,email,role`
