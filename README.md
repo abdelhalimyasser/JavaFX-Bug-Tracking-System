@@ -74,8 +74,8 @@ A full-featured bug tracking application that supports **four user roles** (Test
 | **7. Email System + Notification Manager**  | • Abderahman Alaa<br> • Nada Moustafa | • Realistic simulated emails (formatted output)<br>• Templates for assignment & completion<br>• Date/time utilities<br>• Helps with CSV edge cases |
 
 ### CSV File Structures
-- `users.csv` → `username,password,fullName,email,role`
-- `bugs.csv` → `bugId,title,type,priority,level,projectName,dateReported,status,testerUsername,developerUsername,screenshotPath,dateClosed`
+- `users.csv` → `firstName,lastName,password,email,role`
+- `bugs.csv` → `bugId,name,projectName,type,priority,level,description,dateReported,status,testerUsername,developerUsername,screenshotPath`
 
 **This division is perfectly fair** — everyone writes significant logic, deals with file I/O, and contributes to a complete working system.
 
