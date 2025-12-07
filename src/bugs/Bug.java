@@ -1,49 +1,29 @@
-package bugs;
+import java.time.LocalDateTime;
 
-public class Bug {
-    private int bugId;
-    private String name;
-    private String projectName;
-    private String type;
-    private String priority;
-    private String level;
-    private String description;
-    private String dateReported;
-    private String status;
-    private String testerUsername;
-    private String developerUsername;
-    private String screenshotPath;
+public class Bug extends Entity {
+    private String title, type, priority, level, projectName, status, assignedTo, screenshotPath;
+    private LocalDateTime dueDate;
 
-    // Constructor
-    public Bug(int bugId, String name, String projectName, String type, String priority,
-               String level, String description, String dateReported, String status,
-               String testerUsername, String developerUsername, String screenshotPath) {
-        this.bugId = bugId;
-        this.name = name;
-        this.projectName = projectName;
+    public Bug(int id, String title, String type, String priority, String level,
+               String projectName, LocalDateTime dueDate, String status,
+               String assignedTo, String screenshotPath) {
+        super(id);
+        this.title = title;
         this.type = type;
         this.priority = priority;
         this.level = level;
-        this.description = description;
-        this.dateReported = dateReported;
+        this.projectName = projectName;
+        this.dueDate = dueDate;
         this.status = status;
-        this.testerUsername = testerUsername;
-        this.developerUsername = developerUsername;
+        this.assignedTo = assignedTo;
         this.screenshotPath = screenshotPath;
     }
 
-    // Empty Constructor
-    public Bug() {}
 
-    // Getters and Setters
-    public int getBugId() { return bugId; }
-    public void setBugId(int bugId) { this.bugId = bugId; }
 
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
-
-    public String getProjectName() { return projectName; }
-    public void setProjectName(String projectName) { this.projectName = projectName; }
+    // Getters & setters
+    public String getTitle() { return title; }
+    public void setTitle(String title) { this.title = title; }
 
     public String getType() { return type; }
     public void setType(String type) { this.type = type; }
@@ -54,75 +34,75 @@ public class Bug {
     public String getLevel() { return level; }
     public void setLevel(String level) { this.level = level; }
 
-    public String getDescription() { return description; }
-    public void setDescription(String description) { this.description = description; }
+    public String getProjectName() { return projectName; }
+    public void setProjectName(String projectName) { this.projectName = projectName; }
 
-    public String getDateReported() { return dateReported; }
-    public void setDateReported(String dateReported) { this.dateReported = dateReported; }
+    public LocalDateTime getDueDate() { return dueDate; }
+    public void setDueDate(LocalDateTime dueDate) { this.dueDate = dueDate; }
 
     public String getStatus() { return status; }
     public void setStatus(String status) { this.status = status; }
 
-    public String getTesterUsername() { return testerUsername; }
-    public void setTesterUsername(String testerUsername) { this.testerUsername = testerUsername; }
-
-    public String getDeveloperUsername() { return developerUsername; }
-    public void setDeveloperUsername(String developerUsername) { this.developerUsername = developerUsername; }
+    public String getAssignedTo() { return assignedTo; }
+    public void setAssignedTo(String assignedTo) { this.assignedTo = assignedTo; }
 
     public String getScreenshotPath() { return screenshotPath; }
     public void setScreenshotPath(String screenshotPath) { this.screenshotPath = screenshotPath; }
 
     public String toCsvLine() {
-        return bugId + "," +
-                name + "," +
-                projectName + "," +
-                type + "," +
-                priority + "," +
-                level + "," +
-                description.replace(",", ";") + "," +   // avoid breaking CSV
-                dateReported + "," +
-                status + "," +
-                testerUsername + "," +
-                developerUsername + "," +
-                screenshotPath;
+        return String.join(",",
+                String.valueOf(id),
+                quoteIfNeeded(title),
+                quoteIfNeeded(type),
+                quoteIfNeeded(priority),
+                quoteIfNeeded(level),
+                quoteIfNeeded(projectName),
+                quoteIfNeeded(DateTimeUtil.formatOpt(dueDate)),
+                quoteIfNeeded(status),
+                quoteIfNeeded(assignedTo),
+                quoteIfNeeded(screenshotPath),
+                quoteIfNeeded(DateTimeUtil.format(createdAt))
+        );
+    }
+
+    public static String csvHeader() {
+        return "id,title,type,priority,level,project,dueDate,status,assignedTo,screenshotPath,createdAt";
+    }
+
+    private static String quoteIfNeeded(String field) {
+        if (field == null) return "";
+        if (field.contains(",") || field.contains("\"") || field.contains("\n")) {
+            String escaped = field.replace("\"", "\"\"");
+            return "\"" + escaped + "\"";
+        } else {
+            return field;
+        }
     }
 
     public static Bug fromCsvLine(String line) {
-        String[] parts = line.split(",", -1); // -1 keeps empty fields
-
-        Bug bug = new Bug();
-        bug.setBugId(Integer.parseInt(parts[0]));
-        bug.setName(parts[1]);
-        bug.setProjectName(parts[2]);
-        bug.setType(parts[3]);
-        bug.setPriority(parts[4]);
-        bug.setLevel(parts[5]);
-        bug.setDescription(parts[6]);
-        bug.setDateReported(parts[7]);
-        bug.setStatus(parts[8]);
-        bug.setTesterUsername(parts[9]);
-        bug.setDeveloperUsername(parts[10]);
-        bug.setScreenshotPath(parts[11]);
-
-        return bug;
+        String[] parts = CSVUtils.smartSplit(line);
+        String[] p = new String[11];
+        for (int i = 0; i < 11; i++) p[i] = (i < parts.length) ? parts[i] : "";
+        try {
+            int id = Integer.parseInt(p[0].isEmpty() ? "0" : p[0]);
+            String title = p[1];
+            String type = p[2];
+            String priority = p[3];
+            String level = p[4];
+            String project = p[5];
+            java.time.LocalDateTime due = DateTimeUtil.parseOpt(p[6]);
+            String status = p[7];
+            String assignedTo = p[8];
+            String screenshot = p[9];
+            return new Bug(id, title, type, priority, level, project, due, status, assignedTo, screenshot);
+        } catch (Exception ex) {
+            System.err.println("Warning: failed to parse bug csv line -> " + ex.getMessage());
+            return null;
+        }
     }
 
     @Override
     public String toString() {
-        return "Bug{" +
-                "bugId=" + bugId +
-                ", name='" + name + '\'' +
-                ", projectName='" + projectName + '\'' +
-                ", type='" + type + '\'' +
-                ", priority='" + priority + '\'' +
-                ", level='" + level + '\'' +
-                ", description='" + description + '\'' +
-                ", dateReported='" + dateReported + '\'' +
-                ", status='" + status + '\'' +
-                ", testerUsername='" + testerUsername + '\'' +
-                ", developerUsername='" + developerUsername + '\'' +
-                ", screenshotPath='" + screenshotPath + '\'' +
-                "}\n";
+        return String.format("Bug{id=%d, title=%s, assignedTo=%s, status=%s}", id, title, assignedTo, status);
     }
 }
-
