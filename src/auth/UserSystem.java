@@ -76,10 +76,10 @@ public class UserSystem {
         return false;
     }
 
-    public void saveUser(String firstName, String lastName, String email, String password, String role) {
+    public void saveUser(String firstName, String lastName, String phoneNumber , String email, String password, String role) {
         try (PrintWriter pw = new PrintWriter(new FileWriter(FILE_NAME, true))) {
             String hashed = hashPassword(password);
-            pw.println(firstName + "," + lastName + "," + email + "," + hashed + "," + role);
+            pw.println(firstName + "," + lastName + "," + ","  + phoneNumber + "," + email + "," + hashed + "," + role);
         } catch (IOException e) {
             e.printStackTrace();
         }
