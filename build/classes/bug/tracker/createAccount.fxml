@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="1000.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bug.tracker.CreateAccountController">
+    
+    <left>
+        <StackPane prefHeight="670.0" prefWidth="600.0" style="-fx-background-color: #e9eef6;" BorderPane.alignment="CENTER">
+            <children>
+                <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="514.0" prefWidth="455.0" style="-fx-background-color: #ffffff; -fx-background-radius: 32px;">
+                    <children>
+                        <PasswordField fx:id="passwordField" accessibleHelp="Password" accessibleRoleDescription="Enter Your Password" accessibleText="Password" layoutX="61.0" layoutY="320.0" prefHeight="38.0" prefWidth="305.0" promptText="********" style="-fx-background-radius: 25px;">
+                            <cursor>
+                                <Cursor fx:constant="NONE" />
+                            </cursor>
+                        </PasswordField>
+                        
+                        <Button fx:id="createAccountButton" alignment="CENTER" layoutX="63.0" layoutY="396.0" mnemonicParsing="false" onAction="#sendToCreateAccountAction" prefHeight="38.0" prefWidth="303.0" style="-fx-background-color: #e9eef6; -fx-alignment: center; -fx-background-radius: 25px;" text="Create Account" textFill="#001f24">
+                            <cursor>
+                                <Cursor fx:constant="DEFAULT" />
+                            </cursor>
+                        </Button>
+                        
+                        <Label alignment="CENTER" layoutX="125.0" layoutY="56.0" prefHeight="38.0" prefWidth="203.0" text="Create Account" textFill="#001f24">
+                            <font>
+                                <Font name="System Bold" size="26.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="69.0" layoutY="237.0" text="Email" textFill="#001f24" />
+                        <Label layoutX="66.0" layoutY="295.0" prefHeight="18.0" prefWidth="54.0" text="Password" textFill="#001f24" />
+                        <Label layoutX="147.0" layoutY="444.0" text="Have Account, " />
+                        
+                        <TextField fx:id="emailField" accessibleHelp="Email" accessibleRoleDescription="Enter Your Email" accessibleText="Email" layoutX="64.0" layoutY="255.0" prefHeight="38.0" prefWidth="303.0" promptText="email@domain.com" style="-fx-background-radius: 25px;">
+                            <cursor>
+                                <Cursor fx:constant="TEXT" />
+                            </cursor>
+                        </TextField>
+                        
+                        <Hyperlink fx:id="loginLink" layoutX="240.0" layoutY="441.0" onAction="#sendToLoginAction" text=" Login!" />
+                        
+                        <ImageView fitHeight="42.0" fitWidth="53.0" layoutX="206.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../images/create.png" />
+                            </image>
+                        </ImageView>
+                        
+                        <RadioButton fx:id="testerRadio" accessibleHelp="Tester" accessibleRoleDescription="Tester" accessibleText="Tester" layoutX="70.0" layoutY="366.0" mnemonicParsing="false" text="Tester">
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                        </RadioButton>
+                        <RadioButton fx:id="developerRadio" accessibleHelp="Developer" accessibleRoleDescription="Developer" accessibleText="Developer" layoutX="144.0" layoutY="366.0" mnemonicParsing="false" text="Developer">
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                        </RadioButton>
+                        <RadioButton fx:id="pmRadio" accessibleHelp="Project Maneger" accessibleRoleDescription="Project Maneger" accessibleText="Project Maneger" layoutX="242.0" layoutY="366.0" mnemonicParsing="false" text="PM">
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                        </RadioButton>
+                        <RadioButton fx:id="adminRadio" accessibleHelp="Admin" accessibleRoleDescription="Admin" accessibleText="Admin" layoutX="300.0" layoutY="366.0" mnemonicParsing="false" text="Admin">
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                        </RadioButton>
+                        
+                        <TextField fx:id="firstNameField" accessibleHelp="First Name" accessibleRoleDescription="First Name" accessibleText="First Name" layoutX="62.0" layoutY="135.0" prefHeight="38.0" prefWidth="137.0" promptText="First Name" style="-fx-background-radius: 25px;">
+                            <cursor>
+                                <Cursor fx:constant="TEXT" />
+                            </cursor>
+                        </TextField>
+                        
+                        <TextField fx:id="phoneField" accessibleHelp="Phoner Number" accessibleRoleDescription="Phone Number" accessibleText="Phone Number" layoutX="63.0" layoutY="198.0" prefHeight="38.0" prefWidth="304.0" promptText="+201*********" style="-fx-background-radius: 25px;">
+                            <cursor>
+                                <Cursor fx:constant="TEXT" />
+                            </cursor>
+                        </TextField>
+                        
+                        <TextField fx:id="lastNameField" accessibleHelp="Last Name" accessibleRoleDescription="Last Name" accessibleText="Last Name" layoutX="227.0" layoutY="135.0" prefHeight="38.0" prefWidth="137.0" promptText="Last Name" style="-fx-background-radius: 25px;">
+                            <cursor>
+                                <Cursor fx:constant="TEXT" />
+                            </cursor>
+                        </TextField>
+                        
+                        <Label layoutX="66.0" layoutY="180.0" text="Phone Number" textFill="#001f24" />
+                        <Label layoutX="69.0" layoutY="117.0" text="First Name" textFill="#001f24" />
+                        <Label layoutX="227.0" layoutY="117.0" text="Last Name" textFill="#001f24" />
+                    </children>
+                </AnchorPane>
+            </children>
+        </StackPane>
+    </left>
+    
+    <center>
+        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
+            <children>
+                <ImageView fitHeight="432.0" fitWidth="228.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../images/bug-1.gif" />
+                    </image>
+                </ImageView>
+                <Label alignment="CENTER" prefHeight="62.0" prefWidth="306.0" text="Bug Tracker System" textFill="#001f24">
+                    <font>
+                        <Font name="Arial Black" size="26.0" />
+                    </font>
+                </Label>
+            </children>
+        </VBox>
+    </center>
+    
+</BorderPane>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" prefHeight="619.0" prefWidth="513.0" spacing="28" style="-fx-background-color: #e9eef6;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bug.tracker.DeleteUserController">
+
+   <padding>
+      <Insets bottom="55" left="55" right="55" top="45" />
+   </padding>
+
+   <!-- Delete Icon -->
+   <ImageView fitHeight="84" fitWidth="84" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../../images/delete_user.png" /><!-- or use delete.png -->
+      </image>
+   </ImageView>
+
+   <!-- Title -->
+   <Label alignment="CENTER" text="Delete User Account" textFill="#001f24">
+      <font>
+         <Font name="System Bold" size="29" />
+      </font>
+   </Label>
+
+   <!-- User Info Card -->
+   <VBox alignment="CENTER" maxWidth="380" spacing="14" style="-fx-background-color: white; -fx-background-radius: 20;                 -fx-padding: 22; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.12), 12, 0, 0, 4);">
+
+      <!-- Full Name (Big & Bold) -->
+      <Label fx:id="lblFullName" alignment="CENTER" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: #d32f2f;" text="User Name" wrapText="true" />
+
+         <!-- Role Badge -->
+      <Label fx:id="lblRole" alignment="CENTER" style="-fx-font-size: 13; -fx-font-weight: bold; -fx-text-fill: white;                     -fx-background-color: #001f24; -fx-background-radius: 16; -fx-padding: 6 16;" text="ROLE" />
+
+      <!-- Details Grid -->
+      <GridPane alignment="CENTER" hgap="12" vgap="10">
+         <columnConstraints>
+            <ColumnConstraints halignment="RIGHT" />
+            <ColumnConstraints hgrow="ALWAYS" />
+         </columnConstraints>
+
+         <Label style="-fx-text-fill: #555;" text="Email:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+         <Label fx:id="lblEmail" text="user@example.com" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+         <Label style="-fx-text-fill: #555;" text="Phone:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+         <Label fx:id="lblPhone" text="+20123456789" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+         <rowConstraints>
+            <RowConstraints />
+            <RowConstraints />
+         </rowConstraints>
+      </GridPane>
+   </VBox>
+
+   <!-- Warning Messages -->
+   <Label alignment="CENTER" style="-fx-font-size: 15; -fx-font-weight: bold;" text="This user will be permanently removed from the system." textFill="#d32f2f" wrapText="true" />
+
+   <Label alignment="CENTER" style="-fx-font-size: 15; -fx-font-weight: bold;" text="All his history will be lost. This action cannot be undone!" textFill="#b71c1c" wrapText="true" />
+
+   <!-- Action Buttons -->
+   <HBox alignment="CENTER" spacing="22">
+      <Button fx:id="btnDelete" onAction="#handleDeleteUser" prefHeight="54" prefWidth="280" style="-fx-background-color: #d32f2f; -fx-background-radius: 27; -fx-text-fill: white;" text="Yes, Delete Permanently">
+         <font>
+            <Font name="System Bold" size="16" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="22" fitWidth="22">
+               <image>
+                  <Image url="@../../images/trash_white.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+
+      <Button onAction="#handleCancel" prefHeight="54" prefWidth="180" style="-fx-background-color: white; -fx-background-radius: 27;                      -fx-border-color: #bbbbbb; -fx-border-width: 2; -fx-border-radius: 27;                      -fx-text-fill: #001f24;" text="Cancel">
+         <font>
+            <Font name="System Bold" size="15" />
+         </font>
+      </Button>
+   </HBox>
+
+</VBox>

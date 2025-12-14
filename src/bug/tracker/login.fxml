@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="1000.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bug.tracker.LoginController">
+   <left>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="432.0" fitWidth="228.0" layoutX="85.0" layoutY="186.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/bug-1.gif" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" layoutX="46.0" layoutY="101.0" prefHeight="62.0" prefWidth="306.0" text="Bug Tracker System" textFill="#001f24">
+               <font>
+                  <Font name="Arial Black" size="26.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </left>
+   <right>
+      <AnchorPane prefHeight="626.0" prefWidth="535.0" style="-fx-background-color: #e9eef6;" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane layoutX="60.0" layoutY="58.0" prefHeight="509.0" prefWidth="415.0" style="-fx-background-color: #ffffff; -fx-background-radius: 32px;">
+               <children>
+                  <PasswordField fx:id="passwordField" accessibleHelp="Password" accessibleRoleDescription="Enter Your Password" accessibleText="Password" layoutX="68.0" layoutY="280.0" prefHeight="38.0" prefWidth="278.0" promptText="********" style="-fx-background-radius: 25px;">
+                     <cursor>
+                        <Cursor fx:constant="NONE" />
+                     </cursor>
+                  </PasswordField>
+                  
+                  <Button fx:id="loginButton" alignment="CENTER" layoutX="66.0" layoutY="346.0" mnemonicParsing="false" onAction="#loginButton" prefHeight="38.0" prefWidth="278.0" style="-fx-background-color: #e9eef6; -fx-alignment: center; -fx-background-radius: 25px;" text="Login" textFill="#001f24">
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                  </Button>
+                  
+                  <Label alignment="CENTER" layoutX="149.0" layoutY="101.0" prefHeight="38.0" prefWidth="106.0" text="Login" textFill="#001f24">
+                      <font>
+                        <Font name="System Bold" size="26.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="68.0" layoutY="176.0" text="Email" textFill="#001f24" />
+                  <Label layoutX="67.0" layoutY="255.0" prefHeight="18.0" prefWidth="54.0" text="Password" textFill="#001f24" />
+                  <Label layoutX="121.0" layoutY="399.0" text="Don't Have Account, " />
+                  
+                  <TextField fx:id="emailField" accessibleHelp="Email" accessibleRoleDescription="Enter Your Email" accessibleText="Email" layoutX="66.0" layoutY="205.0" prefHeight="38.0" prefWidth="278.0" promptText="email@domain.com" style="-fx-background-radius: 25px;">
+                     <cursor>
+                         <Cursor fx:constant="TEXT" />
+                     </cursor>
+                  </TextField>
+                  
+                  <Hyperlink fx:id="createAccountLink" layoutX="260.0" layoutY="396.0" onAction="#sendToCreateAccountAction" text="Create One!" />
+                  <Hyperlink fx:id="forgetPasswordLink" layoutX="248.0" layoutY="318.0" onAction="#sentToForgetPasswordAction" text="Forget Password" />
+                  <ImageView fitHeight="42.0" fitWidth="53.0" layoutX="181.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/locked.png" />
+                      </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </right>
+</BorderPane>
