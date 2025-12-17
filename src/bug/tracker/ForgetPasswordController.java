@@ -16,12 +16,18 @@ import javafx.stage.Stage;
 import bug.tracker.auth.ForgetPassword;
 
 public class ForgetPasswordController implements Initializable {
-    @FXML private TextField firstNameField;
-    @FXML private TextField lastNameField;
-    @FXML private TextField emailField;
-    @FXML private TextField phoneField;
-    @FXML private PasswordField passwordField; 
-    
+
+    @FXML
+    private TextField firstNameField;
+    @FXML
+    private TextField lastNameField;
+    @FXML
+    private TextField emailField;
+    @FXML
+    private TextField phoneField;
+    @FXML
+    private PasswordField passwordField;
+
     private ForgetPassword forgetPass = new ForgetPassword();
 
     @Override
@@ -46,16 +52,18 @@ public class ForgetPasswordController implements Initializable {
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
                 stage.show();
-            } catch (Exception e) { e.printStackTrace(); }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         } else {
             showAlert(Alert.AlertType.ERROR, "Reset Failed", "Invalid details or weak password.");
         }
     }
-    
+
     @FXML
     public void sendToLoginAction(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("login.fxml")); 
+            Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);
@@ -65,7 +73,7 @@ public class ForgetPasswordController implements Initializable {
             showAlert(Alert.AlertType.ERROR, "Error", "Could not load Login page.");
         }
     }
-    
+
     private void showAlert(Alert.AlertType type, String title, String message) {
         Alert alert = new Alert(type);
         alert.setTitle(title);

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="520.0" prefWidth="500.0" style="-fx-background-color: #e9eef6;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bug.tracker.UpdateUserController">
+    <children>
+        <VBox alignment="CENTER" layoutX="50.0" layoutY="30.0" prefHeight="460.0" prefWidth="400.0" spacing="18.0">
+            <children>
+                <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../images/update.png" />
+                    </image>
+                </ImageView>
+                <Label text="Update User" textFill="#001f24">
+                    <font>
+                        <Font name="Arial Black" size="22.0" />
+                    </font>
+                </Label>
+
+                <HBox alignment="CENTER" spacing="12.0">
+                    <children>
+                        <TextField fx:id="firstNameField" prefHeight="40.0" prefWidth="194.0" promptText="First Name *" style="-fx-background-radius: 12px; -fx-background-color: #ffffff; -fx-padding: 10;" />
+                        <TextField fx:id="lastNameField" prefHeight="40.0" prefWidth="194.0" promptText="Last Name *" style="-fx-background-radius: 12px; -fx-background-color: #ffffff; -fx-padding: 10;" />
+                    </children>
+                </HBox>
+
+                <TextField fx:id="emailField" prefHeight="40.0" prefWidth="400.0" promptText="Email Address *" style="-fx-background-radius: 12px; -fx-background-color: #ffffff; -fx-padding: 10;" />
+                <TextField fx:id="phoneField" prefHeight="40.0" prefWidth="400.0" promptText="Phone Number" style="-fx-background-radius: 12px; -fx-background-color: #ffffff; -fx-padding: 10;" />
+                <ChoiceBox fx:id="roleChoiceBox" prefHeight="40.0" prefWidth="400.0" style="-fx-background-color: #ffffff; -fx-background-radius: 12px;" />
+
+                <Button fx:id="updateButton" onAction="#handleUpdateUser" prefHeight="48.0" prefWidth="220.0" style="-fx-background-color: #ffffff; -fx-background-radius: 24px; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 8, 0, 0, 3);" text="Update User" textFill="#001f24">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Button>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

@@ -1,8 +1,8 @@
 package bug.tracker.users;
 
 public enum Role {
-    Admin,
-    Developer,
-    Tester,
-    ProjectManager
+    ADMIN,
+    DEVELOPER,
+    TESTER,
+    PROJECT_MANAGER
 }

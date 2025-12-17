@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="925.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bug.tracker.DeveloperController">
+    <left>
+        <AnchorPane prefHeight="625.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
+            <children>
+                <ImageView fitHeight="120.0" fitWidth="120.0" layoutX="40.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
+                    <image> <Image url="@../../images/bug-1.gif" /> </image>
+                </ImageView>
+                <Label alignment="CENTER" layoutX="1.0" layoutY="180.0" prefHeight="38.0" prefWidth="202.0" text="Developer Dashboard" textFill="#001f24">
+                    <font> <Font name="Arial Black" size="16.0" /> </font>
+                </Label>
+                <Button layoutX="25.0" layoutY="548.0" mnemonicParsing="false" onAction="#sendToLoginAction" prefHeight="38.0" prefWidth="150.0" style="-fx-background-color: #e9eef6; -fx-background-radius: 25px;" text="Logout" textFill="#001f24" AnchorPane.bottomAnchor="39.0" AnchorPane.leftAnchor="25.0">
+                    <font> <Font name="System Bold" size="12.0" /> </font>
+                </Button>
+            </children>
+        </AnchorPane>
+    </left>
+    <center>
+        <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+            <tabs>
+                <Tab text="Assigned Bugs">
+                    <content>
+                        <AnchorPane style="-fx-background-color: #e9eef6;">
+                            <children>
+                                <Label layoutX="24.0" layoutY="25.0" text="My Assigned Bugs" textFill="#001f24">
+                                    <font> <Font name="System Bold" size="18.0" /> </font>
+                                </Label>
+                                <TableView fx:id="assignedBugsTable" layoutX="24.0" layoutY="66.0" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="66.0">
+                                    <columns>
+                                        <TableColumn fx:id="colName" prefWidth="100.0" text="Bug Name" />
+                                        <TableColumn fx:id="colProject" prefWidth="100.0" text="Project" />
+                                        <TableColumn fx:id="colDesc" prefWidth="150.0" text="Description" />
+                                        <TableColumn fx:id="colStatus" prefWidth="100.0" text="Status" />
+                                        <TableColumn fx:id="colPriority" prefWidth="100.0" text="Priority" />
+                                        <TableColumn fx:id="colDate" prefWidth="150.0" text="Date" />
+                                    </columns>
+                                    <columnResizePolicy> <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" /> </columnResizePolicy>
+                                </TableView>
+                                
+                                <ComboBox fx:id="statusCombo" layoutX="440.0" layoutY="435.0" prefHeight="35.0" prefWidth="200.0" promptText="Change Status" style="-fx-background-radius: 15px; -fx-background-color: #ffffff;" AnchorPane.bottomAnchor="126.0" AnchorPane.rightAnchor="85.0" />
+                                <Button fx:id="updateStatusButton" layoutX="440.0" layoutY="491.0" mnemonicParsing="false" onAction="#updateStatusAction" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: #dff29b; -fx-background-radius: 15px;" text="Update Status" AnchorPane.bottomAnchor="70.0" AnchorPane.rightAnchor="85.0" />
+                                
+                                <ImageView fx:id="screenshotView" fitHeight="182.0" fitWidth="312.0" layoutX="24.0" layoutY="402.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="24.0">
+                                    <image> <Image url="@../../images/bug-preview.png" /> </image>
+                                </ImageView>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="Completed Bugs">
+                    <content>
+                        <AnchorPane style="-fx-background-color: #e9eef6;">
+                            <children>
+                                <Label layoutX="24.0" layoutY="25.0" text="Completed Bugs" textFill="#001f24">
+                                    <font> <Font name="System Bold" size="18.0" /> </font>
+                                </Label>
+                                <TableView fx:id="completedBugsTable" layoutX="24.0" layoutY="66.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="66.0">
+                                    <columns>
+                                        <TableColumn fx:id="colCompName" prefWidth="100.0" text="Bug Name" />
+                                        <TableColumn fx:id="colCompProject" prefWidth="100.0" text="Project" />
+                                        <TableColumn fx:id="colCompDesc" prefWidth="150.0" text="Description" />
+                                        <TableColumn fx:id="colCompStatus" prefWidth="100.0" text="Status" />
+                                        <TableColumn fx:id="colCompPriority" prefWidth="100.0" text="Priority" />
+                                        <TableColumn fx:id="colCompDate" prefWidth="150.0" text="Date" />
+                                    </columns>
+                                    <columnResizePolicy> <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" /> </columnResizePolicy>
+                                </TableView>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </center>
+</BorderPane>

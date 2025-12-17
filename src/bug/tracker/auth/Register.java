@@ -4,7 +4,6 @@ import bug.tracker.csv.UsersCSV;
 
 public class Register {
     public boolean registerUser(String firstName, String lastName, String phoneNumber, String email, String role, String password) {
-        // Validate Inputs
         if (!Validator.isValidName(firstName) || !Validator.isValidName(lastName))
             return false;
         if (!Validator.isValidPhone(phoneNumber))
@@ -16,16 +15,13 @@ public class Register {
 
         UsersCSV usersCsv = new UsersCSV();
 
-        // Check if user already exists
         if (usersCsv.isUser(email))
             return false;
 
-        // Hash the password before saving
         String hashedPassword = Validator.hashPassword(password);
         if (hashedPassword == null) 
             return false;
 
-        // Save to CSV
         usersCsv.saveUser(firstName, lastName, phoneNumber, email, hashedPassword, role);
         return true;
     }

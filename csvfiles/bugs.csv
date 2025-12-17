@@ -1,0 +1,5 @@
+1,bug1,project1,CRASH,LOW,MEDIUM,description1,2025-12-17,C:\Users\abdel\OneDrive\Desktop\190276579.jpeg,Abdelhalim tester,Abdelhalim developer,true
+2,bug2,bug2,MEMORY_LEAK,MEDIUM,HIGH,description2,2025-12-10,C:\Users\abdel\OneDrive\Desktop\190276579.jpeg,Abdelhalim tester,Unassigned,true
+3,bug3,project3,UI,HIGH,HIGH,decription3,2025-12-19,C:\Users\abdel\OneDrive\Desktop\190276579.jpeg,Abdelhalim tester,Abdelhalim developer,true
+5,bug6,project6,CRASH,MEDIUM,MEDIUM,description6,2025-12-17,C:\Users\abdel\OneDrive\Desktop\190276579.jpeg,Abdelhalim tester,Unassigned,true
+6,bug13,project13,PERFORMANCE,HIGH,MEDIUM,description13,2025-12-12,C:\Users\abdel\OneDrive\Desktop\190276579.jpeg,Abdelhalim tester,Unassigned,true

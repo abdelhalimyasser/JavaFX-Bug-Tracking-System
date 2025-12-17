@@ -10,16 +10,16 @@ import java.util.ArrayList;
 import bug.tracker.users.User;
 
 public class UsersCSV extends CSV {
-    // Fixed path usage to be consistent
+
     private final String FILE_NAME = "csvfiles" + File.separator + "users.csv";
     private ArrayList<User> users = new ArrayList<>();
 
-    // Helper to ensure file and folder exist
+    // Helper function to ensure file and folder exist
     private void ensureFileExists() {
         File file = new File(FILE_NAME);
         try {
             if (file.getParentFile() != null) {
-                file.getParentFile().mkdirs(); // Create "csvfiles" directory if missing
+                file.getParentFile().mkdirs();
             }
             if (!file.exists()) {
                 file.createNewFile();
@@ -33,15 +33,7 @@ public class UsersCSV extends CSV {
     public void saveUser(String firstName, String lastName, String phoneNumber, String email, String password, String role) {
         ensureFileExists();
         try (PrintWriter pw = new PrintWriter(new FileWriter(FILE_NAME, true))) {
-            // Sanitize inputs to prevent CSV breakage
-            String line = String.join(",", 
-                sanitize(firstName), 
-                sanitize(lastName), 
-                sanitize(phoneNumber), 
-                sanitize(email), 
-                password, // Password/Hash usually doesn't need sanitizing, but be careful with commas
-                sanitize(role)
-            );
+            String line = String.join(",", sanitize(firstName), sanitize(lastName), sanitize(phoneNumber), sanitize(email), password, sanitize(role));
             pw.println(line);
         } catch (IOException e) {
             e.printStackTrace();
@@ -53,21 +45,13 @@ public class UsersCSV extends CSV {
         ensureFileExists();
         ArrayList<String> lines = new ArrayList<>();
         boolean found = false;
-        
+
         try (BufferedReader br = new BufferedReader(new FileReader(FILE_NAME))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(",");
                 if (parts.length >= 4 && parts[3].equalsIgnoreCase(email)) {
-                    // Update the line
-                    String updatedLine = String.join(",", 
-                        sanitize(firstName), 
-                        sanitize(lastName), 
-                        sanitize(phoneNumber), 
-                        sanitize(email), 
-                        password, 
-                        sanitize(role)
-                    );
+                    String updatedLine = String.join(",", sanitize(firstName), sanitize(lastName), sanitize(phoneNumber), sanitize(email), password, sanitize(role));
                     lines.add(updatedLine);
                     found = true;
                 } else {
@@ -91,7 +75,6 @@ public class UsersCSV extends CSV {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(",");
-                // Use equalsIgnoreCase for emails
                 if (parts.length >= 4 && !parts[3].equalsIgnoreCase(email)) {
                     lines.add(line);
                 }
@@ -137,7 +120,6 @@ public class UsersCSV extends CSV {
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(",");
                 if (parts.length >= 6) {
-                    // Check email (case insensitive) and password (case sensitive)
                     if (parts[3].equalsIgnoreCase(email) && parts[4].equals(password)) {
                         return true;
                     }
@@ -160,12 +142,11 @@ public class UsersCSV extends CSV {
                 if (parts.length >= 6) {
                     bug.tracker.users.Role roleEnum = null;
                     try {
-                        roleEnum = bug.tracker.users.Role.valueOf(parts[5].toUpperCase()); 
+                        roleEnum = bug.tracker.users.Role.valueOf(parts[5].toUpperCase());
                     } catch (Exception e) {
-                        // Fallback or log if role is invalid
                         System.err.println("Invalid role found: " + parts[5]);
                     }
-                    // Assuming User constructor matches
+
                     User user = new User(parts[0], parts[1], parts[2], parts[3], parts[4], roleEnum);
                     users.add(user);
                 }
@@ -176,24 +157,13 @@ public class UsersCSV extends CSV {
         return users;
     }
 
-    // --- Unimplemented Methods (Interface Segregation issues) ---
-    @Override 
-    public void saveBug(String t, String d, String p, String s, String ty, String r, String a) { throw new UnsupportedOperationException("UsersCSV cannot save bugs"); }
-    @Override 
-    public void updateBug(int id, String t, String d, String p, String s, String ty, String r, String a) { throw new UnsupportedOperationException("UsersCSV cannot update bugs"); }
-    @Override 
-    public void deleteBug(int id) { throw new UnsupportedOperationException("UsersCSV cannot delete bugs"); }
-    @Override 
-    public ArrayList<bug.tracker.bugs.Bug> loadBugs() { return new ArrayList<>(); }
-    
-    // Kept these stubbed as returning false/null is safer than crashing for getters
-    @Override 
-    public boolean registerValidate(String fn, String ln, String pn, String em, String pw, String ro) { 
-        return !isUser(em); 
+    @Override
+    public boolean registerValidate(String fn, String ln, String pn, String em, String pw, String ro) {
+        return !isUser(em);
     }
-    
-    @Override 
-    public boolean passwordReset(String firstName, String lastName, String phoneNumber, String email, String newPassword) { 
+
+    @Override
+    public boolean passwordReset(String firstName, String lastName, String phoneNumber, String email, String newPassword) {
         ensureFileExists();
         ArrayList<String> lines = new ArrayList<>();
         boolean foundAndVerified = false;
@@ -202,34 +172,20 @@ public class UsersCSV extends CSV {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(",");
-                
-                // Check if this is the target email (Case Insensitive)
+
                 if (parts.length >= 6 && parts[3].equalsIgnoreCase(email)) {
-                    
-                    // SECURITY CHECK: Verify Name and Phone match before resetting
-                    if (parts[0].equalsIgnoreCase(firstName) &&
-                        parts[1].equalsIgnoreCase(lastName) &&
-                        parts[2].equals(phoneNumber)) {
-                        
-                        // Create updated line with NEW PASSWORD (index 4)
-                        // Structure: First, Last, Phone, Email, Pass, Role
-                        String updatedLine = String.join(",", 
-                            parts[0], 
-                            parts[1], 
-                            parts[2], 
-                            parts[3], 
-                            newPassword, // Insert new hashed password here
-                            parts[5]
-                        );
+                    if (parts[0].equalsIgnoreCase(firstName)
+                            && parts[1].equalsIgnoreCase(lastName)
+                            && parts[2].equals(phoneNumber)) {
+
+                        String updatedLine = String.join(",", parts[0], parts[1], parts[2], parts[3], newPassword, parts[5]);
                         lines.add(updatedLine);
                         foundAndVerified = true;
                     } else {
-                        // Email matched, but security questions failed. Do not update.
                         lines.add(line);
                         System.out.println("DEBUG: Security verification failed for " + email);
                     }
                 } else {
-                    // Not the target user, keep line as is
                     lines.add(line);
                 }
             }
@@ -239,25 +195,69 @@ public class UsersCSV extends CSV {
         }
 
         if (foundAndVerified) {
-            rewriteFile(lines); // Helper method you already have in UsersCSV
+            rewriteFile(lines);
             return true;
         }
-        
-        return false; 
+
+        return false;
     }
 
-    @Override 
+    @Override
     public String getRole(String email) {
         ensureFileExists();
         try (BufferedReader br = new BufferedReader(new FileReader(FILE_NAME))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(",");
-                if (parts.length >= 6 && parts[3].equalsIgnoreCase(email)) return parts[5];
+                if (parts.length >= 6 && parts[3].equalsIgnoreCase(email)) {
+                    return parts[5];
+                }
             }
-        } catch (IOException e) { e.printStackTrace(); }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return null;
     }
-    @Override 
-    public String getRole(int id) { return null; }
+
+    public String getName(String email) {
+        ensureFileExists();
+        try (BufferedReader br = new BufferedReader(new FileReader(FILE_NAME))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length >= 6 && parts[3].equalsIgnoreCase(email)) {
+                    return parts[0] + " " + parts[1];
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public String getRole(int id) {
+        return null;
+    }
+
+    // Bug methods
+    @Override
+    public void saveBug(String t, String d, String p, String s, String ty, String r, String a) {
+        throw new UnsupportedOperationException("UsersCSV cannot save bugs");
+    }
+
+    @Override
+    public void updateBug(int id, String t, String d, String p, String s, String ty, String r, String a) {
+        throw new UnsupportedOperationException("UsersCSV cannot update bugs");
+    }
+
+    @Override
+    public void deleteBug(int id) {
+        throw new UnsupportedOperationException("UsersCSV cannot delete bugs");
+    }
+
+    @Override
+    public ArrayList<bug.tracker.bugs.Bug> loadBugs() {
+        return new ArrayList<>();
+    }
 }

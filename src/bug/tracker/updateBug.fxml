@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" spacing="15" style="-fx-background-color: #e9eef6;" 
+      xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" 
+      fx:controller="bug.tracker.UpdateBugController">
+
+    <padding>
+        <Insets bottom="30" left="40" right="40" top="30" />
+    </padding>
+    <Label text="Update Bug Details" textFill="#001f24">
+        <font>
+            <Font name="System Bold" size="22" />
+        </font>
+    </Label>
+    <TextField fx:id="txtBugName" promptText="Bug Name" />
+    <TextField fx:id="txtProjectName" promptText="Project Name" />
+    <ComboBox fx:id="comboType" prefWidth="300" promptText="Type" />
+    <ComboBox fx:id="comboPriority" prefWidth="300" promptText="Priority" />
+    <ComboBox fx:id="comboLevel" prefWidth="300" promptText="Level" />
+    <ComboBox fx:id="comboStatus" prefWidth="300" promptText="Status" />
+    <TextArea fx:id="txtDescription" prefRowCount="4" promptText="Description..." />
+    <Button onAction="#handleUpdate" prefHeight="40" prefWidth="300" style="-fx-background-color: #001f24; -fx-text-fill: white;" text="Save Changes" />
+</VBox>

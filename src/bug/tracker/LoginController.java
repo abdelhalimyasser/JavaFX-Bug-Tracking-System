@@ -14,12 +14,18 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import bug.tracker.auth.Login;
+import bug.tracker.users.UserSession;
+import bug.tracker.csv.UsersCSV;
 
-public class LoginController implements Initializable {    
-    @FXML private TextField emailField;
-    @FXML private PasswordField passwordField;
-    
+public class LoginController implements Initializable {
+
+    @FXML
+    private TextField emailField;
+    @FXML
+    private PasswordField passwordField;
+
     private Login loginAuth = new Login();
+    private UsersCSV user = new UsersCSV();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -29,11 +35,26 @@ public class LoginController implements Initializable {
     public void loginButton(ActionEvent event) {
         String email = emailField.getText();
         String password = passwordField.getText();
-
+        String name = user.getName(email);
         String role = loginAuth.loginUser(email, password);
 
         if (role != null) {
-            showAlert(Alert.AlertType.INFORMATION, "Login Success", "Welcome, " + role + "!");
+
+            UserSession.setSession(email, name);
+            showAlert(Alert.AlertType.INFORMATION, "Login Success", "Welcome, " + name + "!");
+
+            if (role.equalsIgnoreCase("admin")) {
+                sendToAdminPage(event);
+            } else if (role.equalsIgnoreCase("tester")) {
+                sendToTesterPage(event);
+            } else if (role.equalsIgnoreCase("developer")) {
+                sendToDeveloperPage(event);
+            } else if (role.equalsIgnoreCase("project_manager") || role.equalsIgnoreCase("pm")) {
+                sendToProjectManagerPage(event);
+            } else {
+                System.out.println("Unknown Role: " + role);
+            }
+
         } else {
             showAlert(Alert.AlertType.ERROR, "Login Failed", "Invalid Email or Password.");
         }
@@ -49,10 +70,24 @@ public class LoginController implements Initializable {
         navigate(event, "forgetPassword.fxml", "Forget Password");
     }
 
-    // Helper method to handle navigation safely
+    public void sendToAdminPage(ActionEvent event) {
+        navigate(event, "admin.fxml", "Admin Dashboard");
+    }
+
+    public void sendToTesterPage(ActionEvent event) {
+        navigate(event, "tester.fxml", "Tester Dashboard");
+    }
+
+    public void sendToDeveloperPage(ActionEvent event) {
+        navigate(event, "developer.fxml", "Developer Dashboard");
+    }
+
+    public void sendToProjectManagerPage(ActionEvent event) {
+        navigate(event, "projectManager.fxml", "Project Manager Dashboard");
+    }
+
     private void navigate(ActionEvent event, String fxmlFile, String title) {
         try {
-            // Check if file exists first
             URL fileUrl = getClass().getResource(fxmlFile);
             if (fileUrl == null) {
                 System.err.println("CRITICAL ERROR: FXML file not found: " + fxmlFile);
@@ -63,15 +98,16 @@ public class LoginController implements Initializable {
             Parent root = FXMLLoader.load(fileUrl);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
+            stage.setTitle(title);
             stage.setScene(scene);
             stage.show();
         } catch (Exception e) {
             System.err.println("CRASH while loading " + fxmlFile);
             e.printStackTrace();
-            showAlert(Alert.AlertType.ERROR, "Navigation Error", "Failed to load " + title + " page.");
+            showAlert(Alert.AlertType.ERROR, "Navigation Error", "Failed to load " + title + " page.\n" + e.getMessage());
         }
     }
-    
+
     private void showAlert(Alert.AlertType type, String title, String message) {
         Alert alert = new Alert(type);
         alert.setTitle(title);
