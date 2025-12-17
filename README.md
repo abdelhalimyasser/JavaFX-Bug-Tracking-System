@@ -73,6 +73,8 @@ A full-featured bug tracking application that supports **four user roles** (Test
 | **6. CSV Master Controller** | • Abderahman Alaa<br> • Nada Moustafa                | • Central reusable CSV utility class (read/write/update/delete/append)<br>• Auto-increment BugIDs<br>• Creates `screenshots/` folder |
 | **7. Email System + Notification Manager**  | • Abderahman Alaa<br> • Nada Moustafa | • Realistic simulated emails (formatted output)<br>• Templates for assignment & completion<br>• Date/time utilities<br>• Helps with CSV edge cases |
 
+> REVIEWD AND SUPERVISED BY [Abdelhalim Yasser](https://github.com/abdelhalimyasser) - The Team Leader of the Project
+
 ### CSV File Structures
 - `users.csv` → `firstName,lastName,phone,email,role,password`
 - `bugs.csv` → `bugId,name,projectName,type,priority,level,description,dateReported,status,testerUsername,developerUsername,screenshotPath`
